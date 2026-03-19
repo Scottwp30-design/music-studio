@@ -1,2 +1,0 @@
-# Funland
-Activities studio
