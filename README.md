@@ -1,2 +1,2 @@
-# music-studio
-Music studio
+# Funland
+Activities studio
