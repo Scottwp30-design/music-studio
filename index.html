@@ -373,7 +373,7 @@ padding-right:env(safe-area-inset-right);}
   </div>
 </div>
 
-<div id="gmodal" onclick="if(event.target===this)closeGame();">
+<div id="gmodal">
   <div id="gbox">
     <div id="gtitle"></div>
     <div id="gdesc"></div>
@@ -569,7 +569,22 @@ function stopCompose(){
 var stars=0;
 function addStars(n){stars+=n;document.getElementById('sc').textContent=stars;document.getElementById('sc2').textContent=stars;}
 var rhInt=null;
-function openGame(id){resume();document.getElementById('gmodal').classList.add('on');document.getElementById('gcontent').innerHTML='';if(id==='readnote')buildNR();else if(id==='rhythm')buildRhythm();else if(id==='culture')buildCulture();else if(id==='chord')buildChord();else if(id==='scale')buildScale();}
+function openGame(id){
+  resume();
+  // Reset all done flags on every open
+  nrDone=false;cqDone=false;
+  document.getElementById('gmodal').classList.add('on');
+  document.getElementById('gcontent').innerHTML='';
+  if(id==='readnote')buildNR();
+  else if(id==='rhythm')buildRhythm();
+  else if(id==='culture')buildCulture();
+  else if(id==='chord')buildChord();
+  else if(id==='scale')buildScale();
+}
+// Tap backdrop to close
+document.getElementById('gmodal').addEventListener('click',function(e){
+  if(e.target===this)closeGame();
+});
 function closeGame(){document.getElementById('gmodal').classList.remove('on');stopRhythm();}
 
 // NOTE READING
